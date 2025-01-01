@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index', ['title' => 'Beasiswa PKN']);
+    return view('backend.index', ['title' => 'Beasiswa PKN']);
 });
 
 Route::get('/login', function () {
