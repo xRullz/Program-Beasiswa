@@ -12,54 +12,31 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = Users::all();
+
+        return view('backend.user.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Users::create($request->all());
+        return redirect('/user')->with('success, Data Berhasil Disimpan');
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Users $users)
+    public function update(Request $request, $id)
     {
-        //
+        $user = Users::findOrFail($id);
+        $user->update($request->all());
+        return redirect('/user')->with('success, Data Berhasil Dirubah');
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Users $users)
+    public function destroy($id)
     {
-        //
-    }
+        $user = Users::find($id);
+        $user->delete();
+        return redirect('/user')->with('succes, Data Berhasil Dihapus');
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Users $users)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Users $users)
-    {
-        //
     }
 }

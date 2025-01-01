@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('backend.index', ['title' => 'Beasiswa PKN']);
+    return view('frontend.index', ['title' => 'Beasiswa PKN']);
 });
 
-Route::get('/login', function () {
-    return view('auth.login', ['title' => 'Login']);
-});
+//Backend
+Route::get('/dashboard', [HomeController::class, 'index']);
+Route::get('/users', [UsersController::class, 'index']);
