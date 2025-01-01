@@ -19,6 +19,6 @@ Route::get('/', function () {
     return view('frontend.index', ['title' => 'Beasiswa PKN']);
 });
 
-//Backend
+//Backend   
 Route::get('/dashboard', [HomeController::class, 'index']);
 Route::get('/users', [UsersController::class, 'index']);

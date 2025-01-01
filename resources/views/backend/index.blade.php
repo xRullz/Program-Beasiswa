@@ -1,5 +1,9 @@
 @extends('backend.layouts.layout')
 
 @section('content')
-<h1>Selamat Datang</h1>
+    <div class="container">
+        <div class="page-inner">
+            <h1>Selamat Datang</h1>
+        </div>
+    </div>
 @endsection

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserProfiles;
+use App\Models\Documents;
 use Illuminate\Http\Request;
 
-class UserProfilesController extends Controller
+class DocumentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class UserProfilesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserProfiles $userProfiles)
+    public function show(Documents $documents)
     {
         //
     }
@@ -42,7 +42,7 @@ class UserProfilesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserProfiles $userProfiles)
+    public function edit(Documents $documents)
     {
         //
     }
@@ -50,7 +50,7 @@ class UserProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserProfiles $userProfiles)
+    public function update(Request $request, Documents $documents)
     {
         //
     }
@@ -58,7 +58,7 @@ class UserProfilesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserProfiles $userProfiles)
+    public function destroy(Documents $documents)
     {
         //
     }

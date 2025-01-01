@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
                 'username' => 'mahasiswa',
                 'email' => 'mahasiswa@gmail.com',
                 'password' => Hash::make('123'),
-                'role' => 'mahasiswa',
+                'role' => 'user',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
