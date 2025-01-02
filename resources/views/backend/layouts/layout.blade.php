@@ -79,11 +79,21 @@
                                 <p>Master Data</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="base">
+                            <div class="collapse {{ request()->is('users') || request()->is('scholarships') || request()->is('applications') ? 'show' : '' }}" id="base">
                                 <ul class="nav nav-collapse">
                                     <li class="nav-item {{ request()->is('users') ? 'active' : '' }}">
                                         <a href="/users">
                                             <span class="sub-item">User</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->is('scholarships') ? 'active' : '' }}">
+                                        <a href="/scholarships">
+                                            <span class="sub-item">Schocalrship</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->is('applications') ? 'active' : '' }}">
+                                        <a href="/applications">
+                                            <span class="sub-item">Application</span>
                                         </a>
                                     </li>
                                 </ul>
