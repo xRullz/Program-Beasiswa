@@ -12,31 +12,28 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $users = User::all();
 
-        return view('backend.user.index', compact('user'));
+        return view('backend.user.index', compact('users'));
     }
 
     public function store(Request $request)
     {
         User::create($request->all());
-        return redirect('/user')->with('success, Data Berhasil Disimpan');
-
+        return redirect('/users')->with('success, Data Berhasil Disimpan');
     }
 
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
-        return redirect('/user')->with('success, Data Berhasil Dirubah');
-
+        return redirect('/users');
     }
 
     public function destroy($id)
     {
         $user = User::find($id);
         $user->delete();
-        return redirect('/user')->with('succes, Data Berhasil Dihapus');
-
+        return redirect('/users')->with('succes, Data Berhasil Dihapus');
     }
 }

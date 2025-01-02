@@ -22,3 +22,5 @@ Route::get('/', function () {
 //Backend   
 Route::get('/dashboard', [HomeController::class, 'index']);
 Route::get('/users', [UsersController::class, 'index']);
+Route::post('/users/{id}/update', [UsersController::class, 'update']);
+Route::post('/users/{id}/destroy', [UsersController::class, 'destroy']);
