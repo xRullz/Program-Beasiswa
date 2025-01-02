@@ -128,7 +128,8 @@
                                             alt="Image" class="img-fluid"></a>
                                 </figure>
                                 <div class="course-inner-text py-4 px-4">
-                                    <div class="meta"><span class="icon-clock-o"></span>{{ $data->deadline }}</div>
+                                    <div class="meta"><span class="icon-clock-o">Batas
+                                            Pendaftaran:</span>{{ date('d M Y', strtotime($data->deadline)) }}</div>
                                     <h3><a href="#">{{ $data->title }}</a></h3>
                                     <p>{{ $data->description }}</p>
                                 </div>
@@ -139,7 +140,9 @@
                                     </div>
                                 </div>
                                 <div class="py-3 text-center">
-                                    <a href="/form" class="btn btn-primary">Daftar</a>
+                                    <a href="#" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#registrationModal" data-id="{{ $data->id }}"
+                                        onclick="setScholarshipId({{ $data->id }})">Daftar</a>
                                 </div>
                             </div>
                         @endforeach
@@ -155,7 +158,90 @@
             </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog"
+            aria-labelledby="registrationModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registrationModalLabel">Register and Apply for Scholarship</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="registrationForm" method="POST" action="/applications/register"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <input type="hidden" name="scholarship_id" id="scholarship_id" value="">
+                                <h4>Personal Information</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Full Name:</label>
+                                            <input type="text" name="name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="email" name="email" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="address">Address:</label>
+                                    <input type="text" name="address" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number:</label>
+                                    <input type="text" name="phone" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthdate">Birthdate:</label>
+                                    <input type="date" name="birthdate" class="form-control" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="birthdate">Sekolah Asal:</label>
+                                            <input type="text" name="school" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="birthdate">Jurusan (Opsional):</label>
+                                            <input type="text" name="major" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="documents">Upload Berkas Raport Semester 1-5:</label>
+                                    <input type="file" name="documents[]" class="form-control" multiple required>
+                                    <span class="text-muted d-block">Upload dalam bentuk PDF</span>
+                                </div>
+
+                                <h4>Account Information</h4>
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" name="password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password_confirmation">Confirm Password:</label>
+                                    <input type="password" name="password_confirmation" class="form-control"
+                                        required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Register and Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <div class="site-section" id="programs-section">
             <div class="container">
@@ -389,7 +475,7 @@
                                 Copyright &copy;
                                 <script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved | Kelompok Jeruk <i></a>
+                                </script> All rights reserved | Kelompok Jeruk
                             </p>
                         </div>
                     </div>
@@ -430,6 +516,11 @@
         </div>
     </div>
 
+    {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
+
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="assets/js/jquery-ui.js"></script>
@@ -444,6 +535,12 @@
     <script src="assets/js/jquery.fancybox.min.js"></script>
     <script src="assets/js/jquery.sticky.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script>
+        function setScholarshipId(id) {
+            document.getElementById('scholarship_id').value = id;
+        }
+    </script>
 </body>
 
 </html>

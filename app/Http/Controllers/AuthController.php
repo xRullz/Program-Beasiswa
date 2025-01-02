@@ -22,7 +22,13 @@ class AuthController extends Controller
 
         // Cek kredensial
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('dashboard')->with('success', 'Login successful');
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+                return redirect()->intended('/dashboard')->with('success', 'Login successful');
+            } else {
+                return redirect()->intended('/applications')->with('success', 'Login successful');
+            }
         }
 
         return back()->withErrors([

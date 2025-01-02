@@ -65,42 +65,58 @@
                 <!-- End Logo Header -->
             </div>
 
-            <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                <div class="sidebar-content">
-                    <ul class="nav nav-secondary">
-                        <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
-                            <a href="/dashboard">
-                                <i class="fas fa-home"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ request()->is('users') ? 'active' : '' }}">
-                            <a href="/users">
-                                <i class="fas fa-users"></i>
-                                <p>Data User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ request()->is('scholarships') ? 'active' : '' }}">
-                            <a href="/scholarships">
-                                <i class="fas fa-graduation-cap"></i>
-                                <p>Data Beasiswa</p>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ request()->is('applications') ? 'active' : '' }}">
-                            <a href="/applications">
-                                <i class="fas fa-user"></i>
-                                <p>Data Pendaftar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ request()->is('contacts') ? 'active' : '' }}">
-                            <a href="/contacts">
-                                <i class="fas fa-envelope"></i>
-                                <p>Contact</p>
-                            </a>
-                        </li>
-                    </ul>
+            @if (Auth::user()->role == 'admin')
+                <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                    <div class="sidebar-content">
+                        <ul class="nav nav-secondary">
+                            <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
+                                <a href="/dashboard">
+                                    <i class="fas fa-home"></i>
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ request()->is('users') ? 'active' : '' }}">
+                                <a href="/users">
+                                    <i class="fas fa-users"></i>
+                                    <p>Data User</p>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ request()->is('scholarships') ? 'active' : '' }}">
+                                <a href="/scholarships">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <p>Data Beasiswa</p>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ request()->is('applications') ? 'active' : '' }}">
+                                <a href="/applications">
+                                    <i class="fas fa-user"></i>
+                                    <p>Data Pendaftar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ request()->is('contacts') ? 'active' : '' }}">
+                                <a href="/contacts">
+                                    <i class="fas fa-envelope"></i>
+                                    <p>Contact</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                    <div class="sidebar-content">
+                        <ul class="nav nav-secondary">
+                            <li class="nav-item {{ request()->is('applications') ? 'active' : '' }}">
+                                <a href="/applications">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <p>Beasiswa</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
         </div>
         <!-- End Sidebar -->
 
@@ -153,7 +169,7 @@
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">{{ Auth::user()->username }}</span>
+                                        <span class="fw-bold">{{ Auth::user()->name }}</span>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -165,7 +181,7 @@
                                                         class="avatar-img rounded" />
                                                 </div>
                                                 <div class="u-text">
-                                                    {{-- <h4>{{ Auth::user()->profile->full_name }}</h4> --}}
+                                                    <h4>{{ Auth::user()->name }}</h4>
                                                     <p class="text-muted">{{ Auth::user()->email }}</p>
                                                 </div>
                                             </div>
@@ -190,25 +206,17 @@
                     <nav class="pull-left">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="http://www.themekita.com">
-                                    ThemeKita
+                                <a class="nav-link" href="https://pkncoal.com/">
+                                    Beasiswa PKN
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Help </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Licenses </a>
                             </li>
                         </ul>
                     </nav>
                     <div class="copyright">
-                        2024, made with <i class="fa fa-heart heart text-danger"></i> by
-                        <a href="http://www.themekita.com">ThemeKita</a>
-                    </div>
-                    <div>
-                        Distributed by
-                        <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | <a href="#"> Kelompok Jeruk</a>
                     </div>
                 </div>
             </footer>

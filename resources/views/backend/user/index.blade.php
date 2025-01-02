@@ -50,7 +50,7 @@
                                         @foreach ($users as $user)
                                             <tbody>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $user->username }}</td>
+                                                <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->role }}</td>
                                                 <td>
@@ -85,9 +85,9 @@
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" class="form-control" name="username"
-                                            placeholder="Username ...">
+                                        <label>Nama Lengkap</label>
+                                        <input type="text" class="form-control" name="name"
+                                            placeholder="Nama Lengkap ...">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
@@ -138,9 +138,9 @@
                                     <div class="modal-body">
                                         <input type="hidden" value="{{ $d->id }}" name="id" required>
                                         <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="text" value="{{ $d->username }}" class="form-control"
-                                                name="username" placeholder="Nama Lengkap ...">
+                                            <label>Nama Lengkap</label>
+                                            <input type="text" value="{{ $d->name }}" class="form-control"
+                                                name="name" placeholder="Nama Lengkap ...">
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>

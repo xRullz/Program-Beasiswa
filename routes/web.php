@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // Auth
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Backend   
 Route::get('/dashboard', [HomeController::class, 'index']);
@@ -38,13 +38,14 @@ Route::post('/scholarships/{id}/destroy', [ScholarshipsController::class, 'destr
 
 Route::get('/applications', [ApplicationsController::class, 'index']);
 Route::post('/applications/store', [ApplicationsController::class, 'store']);
+Route::post('/applications/{id}/update', [ApplicationsController::class, 'update']);
 
 Route::get('/contacts', [ContactsController::class, 'index']);
 
 //Frontend
 Route::get('/', [FrontendController::class, 'index']);
 
-
 Route::post('/contacts/store', [ContactsController::class, 'store']);
-Route::post('/applications/store', [ApplicationsController::class, 'store']);
+
+Route::post('/applications/register', [ApplicationsController::class, 'register']);
 

@@ -16,17 +16,9 @@ class ApplicationsController extends Controller
      */
     public function index()
     {
-        $applications = Applications::all();
+        $applications = Applications::where('user_id', auth()->user()->id)->get();
 
         return view('backend.application.index', compact('applications'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -39,11 +31,11 @@ class ApplicationsController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
+            'phone' => 'required|max:15',
             'birthdate' => 'required|date',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|confirmed',
             'scholarship_id' => 'required|exists:scholarships,id',
-            'documents.*' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'documents.*' => 'required|file|mimes:pdf|max:2048',
         ]);
 
         // Menyimpan data pengguna
@@ -79,39 +71,13 @@ class ApplicationsController extends Controller
                 ]);
             }
         }
-
-        return redirect()->route('home')->with('success', 'Registration and application submitted successfully.');
+        return redirect('/')->with('success', 'Registration and application submitted successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Applications $applications)
+    public function update(Request $request, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Applications $applications)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Applications $applications)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Applications $applications)
-    {
-        //
+        $application = Applications::findOrFail($id);
+        $application->update($request->all());
+        return redirect('/applications');
     }
 }
