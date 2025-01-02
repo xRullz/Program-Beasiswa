@@ -12,7 +12,9 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contacts::all();
+
+        return view('backend.contact.index', compact('contacts'));
     }
 
     /**
@@ -28,7 +30,9 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Contacts::create($request->all());
+
+        return redirect('/');
     }
 
     /**

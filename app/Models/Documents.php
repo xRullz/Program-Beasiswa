@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Documents extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'application_id',
+        'file_path',
+    ];
+
+    public function application()
+    {
+        return $this->belongsTo(Applications::class);
+    }
 }

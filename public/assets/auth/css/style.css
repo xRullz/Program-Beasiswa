@@ -1,66 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #7971ea; /* Warna biru tua */
-    font-family: 'Montserrat', sans-serif; /* Menggunakan font Montserrat */
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
 }
 
-.login-container {
-    background-color: rgba(255, 255, 255, 0.9); /* Putih transparan */
-    border-radius: 10px;
-    padding: 30px;
-    width: 350px;
-    max-width: 100%; /* Mencegah form terlalu lebar */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    text-align: center;
+.h-custom {
+    height: calc(100% - 73px);
 }
 
-h2 {
-    margin: 0 0 20px; /* Mengatur margin untuk judul */
-    color: #7971ea; /* Warna judul sesuai dengan latar belakang */
-    font-family: 'Montserrat', sans-serif; /* Font Montserrat untuk heading */
-}
-
-.logo-header {
-    margin-bottom: 20px;
-}
-
-.logo-header img {
-    width: 80px; /* Atur ukuran logo */
-    height: auto; /* Menjaga rasio aspek */
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Montserrat', sans-serif; /* Font Montserrat untuk input */
-}
-
-.login-button {
-    width: 100%;
-    height: 50px; /* Atur tinggi sesuai kebutuhan */
-    background-color: #7971ea;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif; /* Font Montserrat untuk tombol */
-    font-weight: 500; /* Berat font medium */
-}
-
-.login-button:hover {
-    background-color: #7971ea; /* Warna lebih gelap saat hover */
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+    }
 }

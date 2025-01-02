@@ -14,7 +14,7 @@
                         <i class="icon-arrow-right"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="/users">Data User</a>
+                        <a href="/scholarships">Data Beasiswa</a>
                     </li>
                 </ul>
             </div>
@@ -24,12 +24,13 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4 class="card-title">Data User</h4>
+                                    <h4 class="card-title">Data Beasiswa</h4>
                                 </div>
                                 <div class="col-md-6">
                                     <button type="button" class="btn btn-primary btn-sm float-right mr-4"
-                                        data-toggle="modal" data-target="#modalAddUser"><i class="fa fa-plus"></i> Tambah
-                                        User</button>
+                                        data-toggle="modal" data-target="#modalAddBeasiswa"><i class="fa fa-plus"></i>
+                                        Tambah
+                                        Beasiswa</button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -38,29 +39,32 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Role</th>
-                                                <th>Action</th>
+                                                <th>Gambar</th>
+                                                <th>Judul</th>
+                                                {{-- <th>Deskripsi</th> --}}
+                                                <th>Jumlah Penerima</th>
+                                                <th>Batas Pendaftaran</th>
+                                                <th style="width: 60px">Action</th>
                                             </tr>
                                         </thead>
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($users as $user)
+                                        @foreach ($scholarships as $data)
                                             <tbody>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $user->username }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->role }}</td>
+                                                <td><img src="{{ asset('storage/' . $data->image) }}" alt="Image"
+                                                        width="100"></td>
+                                                <td>{{ $data->title }}</td>
+                                                {{-- <td>{{ $data->description }}</td> --}}
+                                                <td>{{ $data->amount }}</td>
+                                                <td>{{ $data->deadline }}</td>
                                                 <td>
-                                                    <a href="#modalEdit{{ $user->id }}" data-toggle="modal"
-                                                        class="btn btn-primary btn-xs" data-original-title="Edit Data"><i
-                                                            class="fa fa-edit"></i> Edit</a>
-                                                    <a href="#modalHapusUser{{ $user->id }}" data-toggle="modal"
-                                                        class="btn btn-danger btn-xs" data-toggle="tooltip"
-                                                        data-original-title="Hapus Data"><i class="fa fa-trash"></i>
-                                                        Hapus</a>
+                                                    <a href="#modalEdit{{ $data->id }}" data-toggle="modal"
+                                                        class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> </a>
+                                                    <a href="#modalHapus{{ $data->id }}" data-toggle="modal"
+                                                        class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
+                                                    </a>
                                                 </td>
                                             </tbody>
                                         @endforeach
@@ -71,40 +75,42 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="modalAddBeasiswa" tabindex="-1" role="dialog"
+                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Tambah User</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Beasiswa</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/users/store" method="post" enctype="multipart/form-data">
+                            <form action="/scholarships/store" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" class="form-control" name="username"
-                                            placeholder="Username ...">
+                                        <label>Judul</label>
+                                        <input type="text" class="form-control" name="title"
+                                            placeholder="Judul Beasiswa ...">
                                     </div>
                                     <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" name="email" placeholder="Email ...">
+                                        <label>Deskripsi</label>
+                                        <input type="text" class="form-control" name="description"
+                                            placeholder="Deskripsi ...">
                                     </div>
                                     <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Password ...">
+                                        <label>Gambar</label>
+                                        <input type="file" class="form-control" name="image"
+                                            placeholder="Deskripsi ...">
                                     </div>
                                     <div class="form-group">
-                                        <label>Role</label>
-                                        <select name="role" class="form-control">
-                                            <option value="#" selected>-- Pilih Role --</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="user">User</option>
-                                        </select>
+                                        <label>Jumlah Penerima</label>
+                                        <input type="number" class="form-control" name="amount"
+                                            placeholder="Jumlah Penerima ...">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Batas Pendaftaran</label>
+                                        <input type="date" class="form-control" name="deadline">
                                     </div>
                                 </div>
 
@@ -121,47 +127,45 @@
                 </div>
 
 
-                @foreach ($users as $d)
+                @foreach ($scholarships as $d)
                     <div class="modal fade" id="modalEdit{{ $d->id }}" tabindex="-1" role="dialog"
                         aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Edit User</h5>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Beasiswa</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="/users/{{ $d->id }}/update" method="post"
+                                <form action="/scholarships/{{ $d->id }}/update" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body">
                                         <input type="hidden" value="{{ $d->id }}" name="id" required>
                                         <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="text" value="{{ $d->username }}" class="form-control"
-                                                name="username" placeholder="Nama Lengkap ...">
+                                            <label>Judul</label>
+                                            <input type="text" value="{{ $d->title }}" class="form-control"
+                                                name="title">
                                         </div>
                                         <div class="form-group">
-                                            <label>Email</label>
-                                            <input type="email" value="{{ $d->email }}" class="form-control"
-                                                name="email" placeholder="Email ...">
+                                            <label>Gambar</label>
+                                            <input type="file" class="form-control" name="image">
                                         </div>
                                         <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" value="{{ $d->password }}" class="form-control"
-                                                name="password" placeholder="Password ...">
+                                            <label>Deskripsi</label>
+                                            <input type="text" value="{{ $d->description }}" class="form-control"
+                                                name="description">
                                         </div>
                                         <div class="form-group">
-                                            <label>Role</label>
-                                            <select name="role" class="form-control">
-                                                <option <?php if ($d->role == 'admin') {
-                                                    echo 'selected';
-                                                } ?> value="admin">Admin</option>
-                                                <option <?php if ($d->role == 'user') {
-                                                    echo 'selected';
-                                                } ?> value="user">User</option>
-                                            </select>
+                                            <label>Jumlah Penerima</label>
+                                            <input type="text" value="{{ $d->amount }}" class="form-control"
+                                                name="amount">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Batas Pendaftaran</label>
+                                            <input type="date" value="{{ $d->deadline }}" class="form-control"
+                                                name="deadline">
                                         </div>
                                     </div>
 
@@ -171,31 +175,29 @@
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save
                                             changes</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
                     </div>
                 @endforeach
 
-                @foreach ($users as $g)
-                    <div class="modal fade" id="modalHapusUser{{ $g->id }}" tabindex="-1" role="dialog"
+                @foreach ($scholarships as $g)
+                    <div class="modal fade" id="modalHapus{{ $g->id }}" tabindex="-1" role="dialog"
                         aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus User</h5>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Beasiswa</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="/user/{{ $g->id }}/destroy" method="get"
+                                <form action="/scholarships/{{ $g->id }}/destroy" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body">
 
                                         <input type="hidden" value="{{ $d->id }}" name="id" required>
-
                                         <div class="form-group">
                                             <h4>Apakah Anda Ingin Menghapus Data Ini?</h4>
                                             <div class="modal-footer">
