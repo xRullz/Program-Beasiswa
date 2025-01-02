@@ -293,7 +293,7 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-8 text-center testimony">
-                        <img src="assets/images/pkn.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                        <img src="assets/images/pkn.png" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
                         <h3 class="mb-4">PT. Pesona Khatulistiwa Nusantara</h3>
                         <blockquote>
                             <p>&ldquo; Meningkatkan kualitas hidup masyarakat sehingga dapat memberikan kemakmuran yang

@@ -16,7 +16,13 @@ class ApplicationsController extends Controller
      */
     public function index()
     {
-        $applications = Applications::where('user_id', auth()->user()->id)->get();
+        $user = auth()->user();
+
+        if ($user->role === 'admin') {
+            $applications = Applications::all();
+        } else {
+            $applications = Applications::where('user_id', $user->id)->get();
+        }
 
         return view('backend.application.index', compact('applications'));
     }
