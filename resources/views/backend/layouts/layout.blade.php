@@ -46,10 +46,11 @@
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    <a href="index.html" class="logo">
+                    {{-- <a href="index.html" class="logo">
                         <img src="assets/backend/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
                             height="20" />
-                    </a>
+                            Beasiswa PKN
+                    </a> --}}
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
                             <i class="gg-menu-right"></i>
@@ -116,7 +117,6 @@
                     </div>
                 </div>
             @endif
-
         </div>
         <!-- End Sidebar -->
 
@@ -125,10 +125,10 @@
                 <div class="main-header-logo">
                     <!-- Logo Header -->
                     <div class="logo-header" data-background-color="dark">
-                        <a href="index.html" class="logo">
+                        {{-- <a href="index.html" class="logo">
                             <img src="assets/backend/img/kaiadmin/logo_light.svg" alt="navbar brand"
                                 class="navbar-brand" height="20" />
-                        </a>
+                        </a> --}}
                         <div class="nav-toggle">
                             <button class="btn btn-toggle toggle-sidebar">
                                 <i class="gg-menu-right"></i>
@@ -216,7 +216,7 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | <a href="#"> Kelompok Jeruk</a>
+                        </script> All rights reserved | <a href="#"> Kelompok Manggis</a>
                     </div>
                 </div>
             </footer>

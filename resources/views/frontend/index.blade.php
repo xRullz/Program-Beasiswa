@@ -510,7 +510,51 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
+                </form>
+                <div class="modal-footer">
+                    <p>Belum punya akun? <a href="#" id="linkRegister" data-toggle="modal"
+                            data-target="#modalRegister">Daftar di sini</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="registerModalLabel">Register</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/register" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" class="form-control" name="name"
+                                placeholder="Nama Lengkap ...">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Email ...">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Password ...">
+                        </div>
+                        <div class="form-group">
+                            <label>Konfirmasi Password</label>
+                            <input type="password" class="form-control" name="password_confirmation"
+                                placeholder="Konfirmasi Password ...">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Daftar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -540,6 +584,12 @@
         function setScholarshipId(id) {
             document.getElementById('scholarship_id').value = id;
         }
+    </script>
+
+    <script>
+        document.getElementById('linkRegister').addEventListener('click', function() {
+            $('#modalLogin').modal('hide'); // Menutup modal login
+        });
     </script>
 </body>
 
